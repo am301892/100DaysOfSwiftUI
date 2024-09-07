@@ -32,6 +32,10 @@ struct ContentView: View {
     }
     
     var outputValue: Double{
+        if inputUnit == outputUnit {
+                    return convertFrom
+                }
+        
         switch outputUnit{
         case "m":
             return inputInMeters
