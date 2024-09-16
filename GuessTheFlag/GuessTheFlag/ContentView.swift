@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
     @State private var score = 0
+    @State private var flagsTapped = 0
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Spain", "UK", "Ukraine", "US"].shuffled()
 
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -26,7 +27,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack {
                 Spacer()
-                Text("Guess the Flag")
+                Text("GUESS THE FLAG")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
                 VStack(spacing: 15) {
@@ -51,12 +52,20 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 20)
                     .background(.regularMaterial)
-                    .clipShape(.rect(cornerRadius: 20))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
                 }
                 .alert(scoreTitle, isPresented: $showingScore) {
-                    Button("Continue", action: askQuestion)
+                    if flagsTapped == 8{
+                        Button("Play again", action: resetGame)
+                    } else{
+                        Button("Continue", action: askQuestion)
+                    }
                 } message: {
-                    Text("Your score is \(score)")
+                    if flagsTapped == 8 {
+                        Text("Your final score is \(score)")
+                    }else{
+                        Text("Your score is \(score)")
+                    }
                 }
                 Spacer()
                 Spacer()
@@ -69,7 +78,19 @@ struct ContentView: View {
             
         }
     }
+    func resetGame(){
+        score = 0
+        flagsTapped = 0
+        countries.shuffle()
+        correctAnswer = Int.random(in: 0...2)
+    
+    }
     func flagTapped(_ number: Int) {
+        flagsTapped += 1
+        if flagsTapped == 8{
+            scoreTitle = "Game over!"
+            score = 0
+        }
         if number == correctAnswer {
             scoreTitle = "Correct"
             score += 1
@@ -85,9 +106,6 @@ struct ContentView: View {
         correctAnswer = Int.random(in: 0...2)
     }
     
-    func resetScore(){
-        //code
-    }
 }
 
 #Preview {
