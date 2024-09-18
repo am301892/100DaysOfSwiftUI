@@ -6,9 +6,54 @@
 //
 
 import SwiftUI
+//custom modifiers
+struct Title: ViewModifier{
+    func body(content: Content) -> some View{
+        content
+            .font(.largeTitle)
+            .foregroundStyle(.white)
+            .padding().background(.yellow)
+            .clipShape(.rect(cornerRadius: 10))
+    }
+}
 
+extension View{
+    func titleStyle() -> some View{
+        modifier(Title())
+    }
+}
 struct ContentView: View {
+    let motto1 = Text("Draco dormiens")
+    let motto2 = Text("nunquam titillandus")
+    
+    struct CapsuleText: View {
+        var text: String
+        
+        var body: some View {
+                Text(text)
+                    .font(.largeTitle)
+                    .padding()
+                    .foregroundStyle(.white)
+                    .background(.blue)
+                    .clipShape(.capsule)
+            }
+        
+    }
+    
     var body: some View {
+        //custom modifier in action
+        Text("hello world")
+ //           .modifier(Title())
+            .titleStyle() //we can do this because of the extension
+        VStack(spacing: 10) {
+                    CapsuleText(text: "First")
+                    CapsuleText(text: "Second")
+                }
+        
+        VStack {
+                    motto1
+                    motto2
+                }
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
