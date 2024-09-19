@@ -6,6 +6,21 @@
 //
 
 import SwiftUI
+//challenge 3
+struct TitleModifier: ViewModifier{
+    func body(content: Content) -> some View{
+        content
+            .font(.largeTitle)
+            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+    }
+}
+
+extension View{
+    func titleStyleChallenge() -> some View{
+        self.modifier(TitleModifier())
+    }
+}
+
 //custom modifiers
 struct Title: ViewModifier{
     func body(content: Content) -> some View{
@@ -52,12 +67,10 @@ struct ContentView: View {
         
         VStack {
                     motto1
+                .titleStyleChallenge()
                     motto2
                 }
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
             Text("Hello, world!")
                 .padding()
                     .background(.red)
