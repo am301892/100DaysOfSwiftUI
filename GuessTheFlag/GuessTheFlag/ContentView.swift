@@ -6,6 +6,15 @@
 //
 
 import SwiftUI
+struct FlagImage: View{
+    var imageName: String
+    
+    var body: some View{
+        Image(imageName)
+            .clipShape(Capsule())
+            .shadow(radius: 5)
+    }
+}
 
 struct ContentView: View {
 //    @State private var showingAlert = false
@@ -44,9 +53,7 @@ struct ContentView: View {
                         Button {
                             flagTapped(number)
                         } label: {
-                            Image(countries[number])
-                                .clipShape(.capsule)
-                                .shadow(radius: 5)
+                            FlagImage(imageName: countries[number])
                         }
                     }
                     .frame(maxWidth: .infinity)
