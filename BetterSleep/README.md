@@ -8,6 +8,7 @@ From Hacking with Swift:
 >- Roughly how many hours of sleep do they want?
 >- How many cups of coffee do they drink per day?
 ## Screenshots
+![Screenshot 2024-10-16 at 16 43 44](https://github.com/user-attachments/assets/fb832018-c16b-456c-8a16-072e3e8e4071)
 
 
 ## Topics
