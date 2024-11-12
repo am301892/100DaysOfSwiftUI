@@ -16,9 +16,12 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
+    @State private var score = 0
+    
     var body: some View {
         NavigationStack {
             List{
+                Text("Your score is \(score)")
                 Text(rootWord)
                 Section{
                     TextField("Enter your word", text: $newWord)
@@ -91,6 +94,11 @@ struct ContentView: View {
         }message: {
             Text(errorMessage)
         }
+        .toolbar{
+            ToolbarItem(placement: .bottomBar){
+                Button("Start Over"){ startGame()}
+            }
+        }
     }
     func addNewWord(){
         //Lowercase newWord and remove any whitespace
@@ -98,25 +106,36 @@ struct ContentView: View {
         //Check that it has at least 1 character otherwise exit
         guard answer.count > 0 else {return}
         //Insert that word at position 0 in the usedWords array and Set newWord back to be an empty string
-        
+        guard isTooShort(word: answer) else{
+            wordError(title: "Word is too short or is the same as the original one", message: "Try again")
+            return
+        }
         guard isOriginal(word: answer) else{
             wordError(title: "Word used already", message: "Be more original")
+            return
         }
         
         guard isPossible(word: answer) else{
             wordError(title: "Word not possible", message: "You cant spell that word from \(rootWord)")
+            return
         }
         
         guard isReal(word: answer) else{
             wordError(title: "Word not recognized", message: "you cant just make them up, you know!")
+            return
         }
         withAnimation{
             usedWords.insert(answer, at: 0)
         }
         newWord = ""
+        
+        score += answer.count
     }
-    
+
     func startGame(){
+        score = 0
+        usedWords = [String]()
+        newWord = ""
         //Find start.txt in our bundle
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt"){
             //Load it into a string
@@ -135,7 +154,14 @@ struct ContentView: View {
     func isOriginal(word: String) -> Bool{
         !usedWords.contains(word)
     }
-    
+    //Disallow answers that are shorter than three letters or are just our start word
+    func isTooShort(word: String) -> Bool{
+        if word.count < 3 || word == rootWord{
+            return false
+        }else{
+            return true
+        }
+    }
     func isPossible(word: String) -> Bool{
         var tempWord = rootWord
         
@@ -159,7 +185,8 @@ struct ContentView: View {
     
     func wordError(title: String, message: String){
         errorTitle = title
-        errorMessage = messageshowingError = true
+        errorMessage = message
+        showingError = true
     }
 }
 
