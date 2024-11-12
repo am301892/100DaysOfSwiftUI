@@ -13,4 +13,5 @@ https://www.hackingwithswift.com/100/swiftui
 | [Project 2 - GuessTheFlag](https://github.com/am301892/100DaysOfSwiftUI/tree/main/GuessTheFlag)| <img width="550" alt="Screenshot 2024-09-16 at 15 54 09" src="https://github.com/user-attachments/assets/915d5ac8-b826-487a-944f-8c18f82a7f56"> |
 | [Milestone Projects 1-3: RockPaperScissors](https://github.com/am301892/100DaysOfSwiftUI/tree/main/RockPaperScissors) |<img width="573" alt="Screenshot 2024-09-27 at 11 46 35" src="https://github.com/user-attachments/assets/bddc18f7-1a34-40f1-92f8-eff49466d0cf">|
 | [BetterRest](https://github.com/am301892/100DaysOfSwiftUI/tree/main/BetterSleep) | ![Screenshot 2024-10-16 at 16 43 44](https://github.com/user-attachments/assets/67603996-d36f-41c7-af73-db6951cce067)
-| [ WordScramble](https://github.com/am301892/100DaysOfSwiftUI/tree/main/WordScramble)| | 
+| [ WordScramble](https://github.com/am301892/100DaysOfSwiftUI/tree/main/WordScramble)|<img width="698" alt="Screenshot 2024-11-12 at 16 44 19" src="https://github.com/user-attachments/assets/a903faef-f7fc-4042-a159-02830f5b8449">
+| 
